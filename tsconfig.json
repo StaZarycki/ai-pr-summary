@@ -37,6 +37,7 @@
     "alwaysStrict": true,
     "useUnknownInCatchVariables": true,
     "noUncheckedSideEffectImports": true,
+    "noImplicitReturns": true,
 
     // Some stricter flags (disabled by default)
     "noUnusedLocals": true,

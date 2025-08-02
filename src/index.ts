@@ -1,8 +1,10 @@
-import { getConfig } from "./config.ts";
+import { GithubService } from "./github.service.ts";
 
 async function main(): Promise<void> {
-  const { TEST } = getConfig();
-  console.log(TEST);
+  const githubService = new GithubService();
+  
+  const prDetails = await githubService.getPRDetails();
+  console.log(prDetails);
 }
 
 main().catch((error) => {
