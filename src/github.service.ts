@@ -40,4 +40,13 @@ export class GithubService {
 
     return response.data;
   }
+
+  async postCommentToPR(comment: string) {
+    await this.octokit.issues.createComment({
+      owner: this.owner,
+      repo: this.repo,
+      issue_number: this.prNumber,
+      body: comment,
+    });
+  }
 }

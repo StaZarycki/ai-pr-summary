@@ -5,6 +5,8 @@ async function main(): Promise<void> {
   
   const prDetails = await githubService.getPRDetails();
   console.log(prDetails);
+  
+  await githubService.postCommentToPR("Test comment");
 }
 
 main().catch((error) => {
