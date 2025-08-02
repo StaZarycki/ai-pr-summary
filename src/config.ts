@@ -18,6 +18,7 @@ const stringToJson = zod
 
 const schema = zod.object({
   GITHUB_TOKEN: zod.string(),
+  GEMINI_API_KEY: zod.string().optional(),
 
   // GitHub Actions
   PR_NUMBER: zod.coerce.number(),
