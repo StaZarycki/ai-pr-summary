@@ -7,7 +7,7 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "allowUnreachableCode": false,
-    
+
     // Environment setup & latest features
     "lib": ["ESNext"],
     "target": "ESNext",
@@ -43,5 +43,5 @@
     "noUnusedParameters": true,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts"]
 }

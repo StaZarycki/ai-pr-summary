@@ -1,9 +1,9 @@
-import zod from 'zod';
+import zod from "zod";
 
 const schema = zod.object({
-    TEST: zod.string()
+  TEST: zod.string(),
 });
 
 export function getConfig(): zod.infer<typeof schema> {
-    return schema.parse(process.env);
+  return schema.parse(process.env);
 }

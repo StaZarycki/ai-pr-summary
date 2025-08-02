@@ -1,12 +1,12 @@
-import {getConfig} from "./config.ts";
+import { getConfig } from "./config.ts";
 
 async function main(): Promise<void> {
-    const { TEST } = getConfig();
-    console.log(TEST);
+  const { TEST } = getConfig();
+  console.log(TEST);
 }
 
 main().catch((error) => {
-    console.error(error);
+  console.error(error);
 
-    return 1;
-})
+  return 1;
+});
