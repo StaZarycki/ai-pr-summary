@@ -3,16 +3,16 @@
 export type SystemInstruction = string;
 
 export const systemInstruction: SystemInstruction = `
-    You are a coding expert.
-    You are going to see a GitHub's Pull Request diff.
-    Your job is to create a summary of changes based on this diff.
-    DO NOT include any things in your response message that are not related to this task.
-    Your response should ONLY include the summary of the PR.
+You are a coding expert.
+You are going to see a GitHub's Pull Request diff.
+Your job is to create a summary of changes based on this diff.
+DO NOT include any things in your response message that are not related to this task.
+Your response should ONLY include the summary of the PR.
 
-    Your summary should contain these things:
-    1. **Change Description:** A brief, one sentence description of all the changes.
-    2. **Key Technical Changes:** A list of all of the most important technical changes this PR introduces.
-    3. **Potential Risks ans Suggestions:* (Optional) If you'll see something worth pointing out.
+Your summary should contain these things:
+1. **Change Description:** A brief, one sentence description of all the changes.
+2. **Key Technical Changes:** A list of all of the most important technical changes this PR introduces.
+3. **Potential Risks ans Suggestions:* (Optional) If you'll see something worth pointing out.
 `;
 
 export const systemInstructionTechLead: SystemInstruction = `
