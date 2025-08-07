@@ -32,10 +32,3 @@ This Bun-based TypeScript tool fetches a pull request's diff from GitHub, genera
 2. **System Instructions** – Different personas change how the summary is written via predefined prompt templates.
 3. **Environment Configuration** – Credentials and runtime settings are validated with Zod.
 4. **Bun Runtime** – Use `bun install` and `bun run` to manage dependencies and execute the script.
-
-## Next Steps
-
-- Explore Octokit's wider API surface for more complex PR interactions.
-- Experiment with different AI models or prompt structures by adding new strategies.
-- Customize system instructions or add the TODO Jira context.
-- Tighten TypeScript or linting rules as the project grows.
