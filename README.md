@@ -9,22 +9,6 @@ This Bun-based TypeScript tool fetches a pull request's diff from GitHub, genera
 - **System Instructions**: persona-based prompts (product manager, tech lead, etc.) tailor the summary style.
 - **Zod-Validated Configuration**: environment variables are checked on startup for a safe CI experience.
 
-## Project Structure
-
-```
-├── src
-│   ├── ai-providers
-│   │   ├── ai-provider.context.ts   # Holds the active AI strategy
-│   │   ├── strategy.ts              # Strategy interface definition
-│   │   └── gemini.strategy.ts       # Gemini implementation
-│   ├── data
-│   │   └── systemInstruction.ts     # System prompts for different personas
-│   ├── github.service.ts            # Octokit wrapper for PR fetch & comment
-│   ├── config.ts                    # Environment variable validation
-│   └── index.ts                     # Entry point wiring everything together
-└── package.json
-```
-
 ## Getting Started
 
 1. **Install dependencies**
