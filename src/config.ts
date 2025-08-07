@@ -4,7 +4,7 @@ const githubSchema = z.object({
   full_name: z.string(),
 });
 
-const stringToJson = z
+export const stringToJson = z
   .string()
   .transform((str, ctx): z.infer<typeof githubSchema> => {
     try {
@@ -26,8 +26,8 @@ const schema = z.object({
   REPO_CONTEXT: stringToJson.pipe(githubSchema),
 });
 
-const parsedSchema: z.infer<typeof schema> = schema.parse(process.env);
-
-export function getConfig(): typeof parsedSchema {
-  return parsedSchema;
+export function getConfig(
+  env: NodeJS.ProcessEnv = process.env,
+): z.infer<typeof schema> {
+  return schema.parse(env);
 }
