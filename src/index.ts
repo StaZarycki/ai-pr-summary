@@ -4,7 +4,14 @@ import { GeminiStrategy } from "./ai-providers/gemini.strategy.ts";
 import { systemInstructionPM } from "./ai-providers/data/systemInstruction.ts";
 
 async function main(): Promise<void> {
-  const githubService = new GithubService();
+  let githubService: GithubService;
+  try {
+    githubService = new GithubService();
+  } catch (error) {
+    console.error(error);
+
+    return;
+  }
   const aiProviderContext = new AiProviderContext(new GeminiStrategy(), {
     systemInstruction: systemInstructionPM,
   });

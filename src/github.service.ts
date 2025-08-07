@@ -12,9 +12,7 @@ export class GithubService {
 
     const [owner, repo] = REPO_CONTEXT.full_name.split("/");
     if (!owner || !repo) {
-      console.error("Missing owner or repo name.");
-
-      return;
+      throw new Error("Missing owner or repo name.");
     }
 
     this.prNumber = PR_NUMBER;
