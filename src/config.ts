@@ -1,32 +1,32 @@
-import zod from "zod";
+import { z } from "zod";
 
-const githubSchema = zod.object({
-  full_name: zod.string(),
+const githubSchema = z.object({
+  full_name: z.string(),
 });
 
-const stringToJson = zod
+const stringToJson = z
   .string()
-  .transform((str, ctx): zod.infer<typeof githubSchema> => {
+  .transform((str, ctx): z.infer<typeof githubSchema> => {
     try {
       return JSON.parse(str);
     } catch (error) {
       ctx.addIssue({ code: "custom", message: "Invalid JSON" });
 
-      return zod.NEVER;
+      return z.NEVER;
     }
   });
 
-const schema = zod.object({
-  GITHUB_TOKEN: zod.string(),
-  GEMINI_API_KEY: zod.string().optional(),
+const schema = z.object({
+  GITHUB_TOKEN: z.string(),
+  GEMINI_API_KEY: z.string().optional(),
 
   // GitHub Actions
-  PR_NUMBER: zod.coerce.number(),
-  BRANCH_NAME: zod.string(),
+  PR_NUMBER: z.coerce.number(),
+  BRANCH_NAME: z.string(),
   REPO_CONTEXT: stringToJson.pipe(githubSchema),
 });
 
-const parsedSchema: zod.infer<typeof schema> = schema.parse(process.env);
+const parsedSchema: z.infer<typeof schema> = schema.parse(process.env);
 
 export function getConfig(): typeof parsedSchema {
   return parsedSchema;
