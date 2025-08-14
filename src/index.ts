@@ -2,6 +2,7 @@ import { GithubService } from "./github.service.ts";
 import { AiProviderContext } from "./ai-providers/ai-provider.context.ts";
 import { GeminiStrategy } from "./ai-providers/gemini.strategy.ts";
 import { systemInstructionPM } from "./ai-providers/data/systemInstruction.ts";
+import { JiraService } from "./jira.service.ts";
 
 async function main(): Promise<void> {
   let githubService: GithubService;
@@ -16,8 +17,21 @@ async function main(): Promise<void> {
     systemInstruction: systemInstructionPM,
   });
 
-  const prDiff = String(await githubService.getPRDetails());
-  const generatedSummary = await aiProviderContext.generateSummary(prDiff);
+  const { title, diff } = await githubService.getPRData();
+
+  let jiraDescription = "";
+  const jiraKeyMatch = title.match(/[A-Z]+-\d+/);
+  if (jiraKeyMatch) {
+    try {
+      const jiraService = new JiraService();
+      jiraDescription = await jiraService.getIssueDescription(jiraKeyMatch[0]);
+    } catch (error) {
+      console.error("Failed to fetch Jira issue", error);
+    }
+  }
+
+  const input = jiraDescription ? `${jiraDescription}\n\n${diff}` : diff;
+  const generatedSummary = await aiProviderContext.generateSummary(input);
 
   await githubService.postCommentToPR(generatedSummary);
 }
