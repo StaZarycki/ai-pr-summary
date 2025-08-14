@@ -21,6 +21,7 @@ This Bun-based TypeScript tool fetches a pull request's diff from GitHub, genera
    - `REPO_OWNER`
    - `PR_NUMBER`
    - (optional) `GEMINI_API_KEY` or other provider keys
+   - (optional) `JIRA_BASE_URL`, `JIRA_EMAIL`, `JIRA_API_TOKEN` for Jira integration
 3. **Run the script**
    ```bash
    bun run src/index.ts

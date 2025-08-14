@@ -24,6 +24,9 @@ const schema = z.object({
   PR_NUMBER: z.coerce.number(),
   BRANCH_NAME: z.string(),
   REPO_CONTEXT: stringToJson.pipe(githubSchema),
+  JIRA_BASE_URL: z.string().url().optional(),
+  JIRA_EMAIL: z.string().email().optional(),
+  JIRA_API_TOKEN: z.string().optional(),
 });
 
 export function getConfig(

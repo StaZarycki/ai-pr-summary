@@ -26,17 +26,27 @@ export class GithubService {
     this.init();
   }
 
-  async getPRDetails() {
-    const response = await this.octokit.pulls.get({
-      owner: this.owner,
-      repo: this.repo,
-      pull_number: this.prNumber,
-      mediaType: {
-        format: "diff",
-      },
-    });
+  async getPRData() {
+    const [prDetails, prDiff] = await Promise.all([
+      this.octokit.pulls.get({
+        owner: this.owner,
+        repo: this.repo,
+        pull_number: this.prNumber,
+      }),
+      this.octokit.pulls.get({
+        owner: this.owner,
+        repo: this.repo,
+        pull_number: this.prNumber,
+        mediaType: {
+          format: "diff",
+        },
+      }),
+    ]);
 
-    return response.data;
+    return {
+      title: prDetails.data.title,
+      diff: prDiff.data as unknown as string,
+    };
   }
 
   async postCommentToPR(comment: string) {
